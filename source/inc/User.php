@@ -5,31 +5,27 @@
 	class User {
 		private $username;
 		private $password;
+		private $errors;
 		
 		public function __construct($database) {
 			$this->session	= new Session;
 			$this->db		= $database;
 		}
 		
-		public function createNewUser($username, $password, $email, $interests) {
-			// Check user name
-			if (Valid::nameValid('Username',$username) && Valid::passValid($password)) {
+		public function create($username, $password, $email, $firstName, $lastName, $type) {
+			if ($this->isUsernameValid($username) && $this->isPassValid($password) && $this->isEmailValid($email) && $this->isFirstNameValid($firstName) && $this->isLastNameValid($lastName)) {
 			
 				$this->username = $username;
 				$this->password = $password;
-				
 				if ($this->usernameTaken()) {
 					throw new Exception("Username already in use. Please choose a different username.");
 				}
-				
-				// Salt and store the password
 				$this->saltPassword();
-				$rs	= $this->db->Execute("INSERT INTO users VALUES(NULL, ?, ?, ?, ?)",array($username, $this->password, $email, $interests));
-				
+				$rs	= $this->db->Execute("INSERT INTO users VALUES(NULL, ?, ?, ?, ?)",array($username, $email, $this->password, $firstName, $lastName, $type));
 				return true;
 			} else {
 				// Invalid user input
-				return false;
+				return $errors;
 			}
 		}
 		
@@ -81,6 +77,56 @@
 				}
 			} else {
 				throw new Exception("You are not logged in!");
+			}
+		}
+		
+		public function isUsernameValid($name) {
+			try {
+				Valid::isNameValid('Username', $name);
+				return true;
+			} catch (Exception $e) {
+				$errors[] = $e->getMessage();
+				return false;
+			}
+		}
+		
+		public function isPasswordValid($password) {
+			try {
+				Valid::isPassValid($password);
+				return true;
+			} catch (Exception $e) {
+				$errors[] = $e->getMessage();
+				return false;
+			}
+		}
+		
+		public function isEmailValid($email) {
+			try {
+				Valid::isEmailValid($email);
+				return true;
+			} catch (Exception $e) {
+				$errors[] = $e->getMessage();
+				return false;
+			}
+		}
+		
+		public function isFirstNameValid($name) {
+			try {
+				Valid::isNameValid('First Name', $name);
+				return true;
+			} catch (Exception $e) {
+				$errors[] = $e->getMessage();
+				return false;
+			}
+		}
+		
+		public function isLastNameValid($name) {
+			try {
+				Valid::isNameValid('Last Name', $name);
+				return true;
+			} catch (Exception $e) {
+				$errors[] = $e->getMessage();
+				return false;
 			}
 		}
 		
