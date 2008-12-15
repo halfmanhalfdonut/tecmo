@@ -18,10 +18,14 @@
 				$this->username = $username;
 				$this->password = $password;
 				if ($this->isUsernameTaken()) {
-					throw new Exception("Username already in use. Please choose a different username.");
+					$errors[] = "Username already in use. Please choose a different username.";
+					return $errors;
+				} else if ($this->isEmailTaken($email)) {
+					$errors[] = "Email already in use.";
+					return $errors;
 				}
 				$this->saltPassword();
-				$rs	= $this->db->Execute("INSERT INTO users VALUES(NULL, ?, ?, ?, ?)",array($username, $email, $this->password, $firstName, $lastName, $type));
+				$rs	= $this->db->Execute("INSERT INTO users VALUES(NULL, ?, ?, ?, ?, ?)",array($username, $email, $this->password, $firstName, $lastName, $type));
 				return true;
 			} else {
 				// Invalid user input
@@ -70,7 +74,8 @@
 					if ($this->checkUserPass($this->session->username, $password)) {
 						// Assure new passwords match.
 						if ($newPassword != $newPasswordVerified) {
-							throw new Exception("New passwords do not match.");
+							$errors[] = "New passwords do not match.";
+							return $errors;
 						}
 						
 						// Salt and store the new password
@@ -80,16 +85,38 @@
 						
 						return true;
 					} else {
-						throw new Exception("Incorrect Password.");
+						$errors[] = "Incorrect Password.";
+						return $errors;
 					}
 				}
 			} else {
-				throw new Exception("You are not logged in!");
+				$errors[] = "You are not logged in!";
+				return $errors;
 			}
 		}
 		
 		public function resetPassword($email) {
-			// Create new password, email it to the user and then salt/store it
+			if ($this->isEmailTaken($email)) {
+				// Create a 6-character password from this random list
+				$charList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+				$password = "";
+				
+				while (strlen($password) < 6) {
+					$password .= $charList[(rand(0,(strlen($charList)-1))];
+				}
+				
+				// Send email to user
+				// 
+				//
+				
+				$this->password = $password;
+				$this->saltPassword();
+				$rs	= $this->db->Execute("UPDATE users SET password = (?) WHERE email = (?)",array($this->password, $email));
+				return true;
+			} else {
+				$errors[] = "No user registered with this email.";
+				return $errors;
+			}
 		}
 		
 		public function isUsernameValid($name) {
@@ -168,6 +195,10 @@
 		
 		private function isUsernameTaken() {
 			return (bool)$this->db->GetOne("SELECT COUNT(*) FROM users WHERE username = ?",array($this->username));
+		}
+		
+		private function isEmailTaken($email) {
+			return (bool)$this->db->GetOne("SELECT COUNT(*) FROM users WHERE email = ?",array($email));
 		}
 	}
 	
