@@ -119,56 +119,6 @@
 			}
 		}
 		
-		public function isUsernameValid($name) {
-			try {
-				Valid::isNameValid('Username', $name);
-				return true;
-			} catch (Exception $e) {
-				$errors[] = $e->getMessage();
-				return false;
-			}
-		}
-		
-		public function isPasswordValid($password) {
-			try {
-				Valid::isPassValid($password);
-				return true;
-			} catch (Exception $e) {
-				$errors[] = $e->getMessage();
-				return false;
-			}
-		}
-		
-		public function isEmailValid($email) {
-			try {
-				Valid::isEmailValid($email);
-				return true;
-			} catch (Exception $e) {
-				$errors[] = $e->getMessage();
-				return false;
-			}
-		}
-		
-		public function isFirstNameValid($name) {
-			try {
-				Valid::isNameValid('First Name', $name);
-				return true;
-			} catch (Exception $e) {
-				$errors[] = $e->getMessage();
-				return false;
-			}
-		}
-		
-		public function isLastNameValid($name) {
-			try {
-				Valid::isNameValid('Last Name', $name);
-				return true;
-			} catch (Exception $e) {
-				$errors[] = $e->getMessage();
-				return false;
-			}
-		}
-		
 		/**********************************/
 		/* HERE BE PRIVATE METHODS, MATEY */
 		/**********************************/
@@ -199,6 +149,56 @@
 		
 		private function isEmailTaken($email) {
 			return (bool)$this->db->GetOne("SELECT COUNT(*) FROM users WHERE email = ?",array($email));
+		}
+		
+		private function isUsernameValid($name) {
+			try {
+				Valid::isNameValid('Username', $name);
+				return true;
+			} catch (Exception $e) {
+				$errors[] = $e->getMessage();
+				return false;
+			}
+		}
+		
+		private function isPasswordValid($password) {
+			try {
+				Valid::isPassValid($password);
+				return true;
+			} catch (Exception $e) {
+				$errors[] = $e->getMessage();
+				return false;
+			}
+		}
+		
+		private function isEmailValid($email) {
+			try {
+				Valid::isEmailValid($email);
+				return true;
+			} catch (Exception $e) {
+				$errors[] = $e->getMessage();
+				return false;
+			}
+		}
+		
+		private function isFirstNameValid($name) {
+			try {
+				Valid::isNameValid('First Name', $name);
+				return true;
+			} catch (Exception $e) {
+				$errors[] = $e->getMessage();
+				return false;
+			}
+		}
+		
+		private function isLastNameValid($name) {
+			try {
+				Valid::isNameValid('Last Name', $name);
+				return true;
+			} catch (Exception $e) {
+				$errors[] = $e->getMessage();
+				return false;
+			}
 		}
 	}
 	
