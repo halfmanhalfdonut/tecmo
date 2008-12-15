@@ -1,5 +1,5 @@
 <?php
-	
+	//sean test commit <- delete this stupid line
 	define("COOKIE_EXPIRE", 60*60*24*90);  // 90 Days
 	define("COOKIE_PATH", "/");  //Available in whole domain
 
