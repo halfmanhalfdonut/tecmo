@@ -17,7 +17,7 @@
 			
 				$this->username = $username;
 				$this->password = $password;
-				if ($this->usernameTaken()) {
+				if ($this->isUsernameTaken()) {
 					throw new Exception("Username already in use. Please choose a different username.");
 				}
 				$this->saltPassword();
@@ -29,30 +29,38 @@
 			}
 		}
 		
-		public function checkUserPass($username, $password) {
-			if (Valid::nameValid('Username',$username) && Valid::passValid($password)) {
+		public function checkLogin($username, $password) {
+			if ($this->isUsernameValid($username) && $this->isPassValid($password)) {
 				$this->username = $username;
 				$this->password = $password;
 				
-				$rs = $this->db->Execute("SELECT password FROM users WHERE username = ?",array($this->username));
-
-				// Salt the user-entered password to check against the database
-				$this->saltPassword();
-
-				// Remove the SALT_PRE and SALT_AFF
-				$this->password = substr(substr($this->password, SALT_PRE), 0, -SALT_AFF);
-				
-				// Remove the pre/aff salt, and check against the stored password
-				if (substr(substr($rs->fields['password'], SALT_PRE), 0, -SALT_AFF) == $this->password) {
-					// Password is correct
-					return true;
+				// Check if username exists. If so, check against the DB for a good password
+				if ($this->isUsernameTaken()) {
+					$rs = $this->db->Execute("SELECT password FROM users WHERE username = ?",array($this->username));
+	
+					// Salt the user-entered password to check against the database
+					$this->saltPassword();
+	
+					// Remove the SALT_PRE and SALT_AFF
+					$this->password = substr(substr($this->password, SALT_PRE), 0, -SALT_AFF);
+					
+					// Remove the pre/aff salt, and check against the stored password
+					if (substr(substr($rs->fields['password'], SALT_PRE), 0, -SALT_AFF) == $this->password) {
+						// Password is correct
+						return true;
+					} else {
+						// Password is incorrect
+						$errors[] = "Password incorrect";
+						return $errors;
+					}
 				} else {
-					// Password is incorrect
-					return false;
+					// Username isn't in the database
+					$errors[] = "Username does not exist";
+					return $errors;
 				}
 			} else {
 				// Invalid password
-				return false;
+				return $errors;
 			}
 		}
 		
@@ -78,6 +86,10 @@
 			} else {
 				throw new Exception("You are not logged in!");
 			}
+		}
+		
+		public function resetPassword($email) {
+			// Create new password, email it to the user and then salt/store it
 		}
 		
 		public function isUsernameValid($name) {
@@ -154,7 +166,7 @@
 			$this->password = $password;
 		}
 		
-		private function usernameTaken() {
+		private function isUsernameTaken() {
 			return (bool)$this->db->GetOne("SELECT COUNT(*) FROM users WHERE username = ?",array($this->username));
 		}
 	}
