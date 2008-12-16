@@ -3,6 +3,25 @@
 	class Valid {
 		public function __construct() {}
 		
+		
+		public static function isValidArray($check = array()){
+			$invalid = array();
+			
+			foreach($check as $type => $value){
+				$validFunction = 'is'.$type.'Valid';
+				if(!$this->$validFunction($value)){
+					$invalid [$type][]= $value;
+				}
+			}
+			
+			if(!count($invalid)){
+				return true;
+			}
+			else{
+				return $invalid;
+			}
+		}
+		
 		public static function isNameValid($tag = 'name', $name) {
 			if (trim($name) == "") {
 				// Name is empty
