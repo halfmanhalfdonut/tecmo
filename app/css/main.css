@@ -1,0 +1,12 @@
+body {
+	background-color: #123456;
+	color: #FFFFFF;
+}
+
+body a:link, a:visited {
+	color: #FFFF66;
+}
+
+body a:hover {
+	font-weight: bold;
+}

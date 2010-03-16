@@ -1,0 +1,26 @@
+.resetDbsField {
+	float: right;
+	width: 350px;
+	padding-left: 10px;
+}
+
+.resetDbsFieldCaution {
+	float: right;
+	width: 350px;
+	border-color: red;
+	padding-left: 10px;
+}
+
+#editGamesField {
+	clear: both;
+}
+
+#usersField {
+	padding-left: 10px;
+	float: left;
+	width: 400px;
+}
+
+div {
+	display: block;
+}

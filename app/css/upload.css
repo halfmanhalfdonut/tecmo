@@ -1,0 +1,25 @@
+#uploader {
+	clear: both;
+	margin-top: 40px;
+	background-color: #654321;
+}
+
+#notices {
+	color: yellow;
+	font-weight: bold;
+	background-color: #654321;
+}
+
+#statsTable {
+	
+}
+
+#gameStats {
+	text-align: center;
+	width: 700px;
+	padding-left: 15px;
+}
+
+#uploader {
+	padding-left: 15px;
+}

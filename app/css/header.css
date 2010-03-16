@@ -1,0 +1,28 @@
+#headerUl {
+	color: white;
+	list-style-type: none;
+	float: left;
+	margin-left: 20px;
+	display: inline;
+}
+
+#headerUl li {
+	display: inline;
+	float: left;
+	margin-left: 5px;
+}
+
+#headerContainer {
+	padding-right: 20px;
+	text-align: right;
+}
+
+a, a:visited, a:hover {
+	color: white;
+}
+
+a:hover {
+	font-weight: bold;
+	font-family: Comic Sans MS;
+	font-size: 14px;
+}

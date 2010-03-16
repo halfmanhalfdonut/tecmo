@@ -1,0 +1,95 @@
+body{
+	background-color:#654321;
+}
+
+#notices {
+	clear: both;
+	font-weight: bold;
+	color: yellow;
+}
+
+#optionsContainer {
+	margin-bottom: 20px;
+}
+
+#loginContainer {
+	clear: both;
+	padding-top: 30px;
+	padding-left: 100px;
+	width: 700px;
+	background-color:#654321;
+}
+
+div {
+	background-color:#654321;
+}
+
+form {
+	background-color:#654321;
+}
+
+legend {
+	color: black;
+	font-weight: bold;
+}
+
+.fakeAnchor {
+	display: inline;
+	text-decoration: underline;
+	color: white;
+	cursor: pointer;
+}
+
+
+
+#createUser {
+	float: left;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	width: 350px;
+}
+
+#welcome {
+	font-weight: bold;
+	color: #FFFF66;
+}
+
+#login {
+	float: left;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	width: 250px;
+}
+
+#errorDiv {
+	clear: both;
+}
+
+#uploader{
+	background-color:#FFFFFF;
+	width:700px;
+}
+
+.submit {
+	float: right;
+	margin-right: 15px;
+}
+
+.labelsInputs {
+	list-style: none;
+	text-align: left;
+	margin-left: 10px;
+	padding-left: 0px;
+}
+
+.labelsInputs li {
+	padding: 4px;
+	margin: 5 0 5 0px;
+}
+
+.labelsInputs input {
+	clear: both;
+	float: right;
+}
