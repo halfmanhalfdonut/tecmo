@@ -12,7 +12,6 @@
 	}
 	
 	$gameStats = new Game_Stats($db);
-	
 	$allGames = $gameStats->getGames();
 	$smarty->assign('allGames',$allGames );
 	echo '<pre>';

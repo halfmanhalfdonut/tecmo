@@ -1,8 +1,29 @@
 {assign var='thisPage' value='index.php'}
-<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_DIR}/index.css" />
-<script language="JavaScript" src="{$smarty.const.JS_DIR}/prototype.js"></script>
-<script language="JavaScript" src="{$smarty.const.JS_DIR}/index.js"></script>
 <html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_DIR}/index.css" />
+		<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
+		<script type="text/javascript">
+			var toggleDisplay = function(show){
+					if(show=="login")
+					{
+						$("#login").show();
+						$("#createUser").hide();
+					}
+					else
+					{
+						$("#login").hide();
+						$("#createUser").show();
+					}
+						
+				}
+			$(document).ready(function(){
+				$("#createUser").hide();
+				$("#login").hide();
+
+			});
+		</script>
+	</head>
 	<body>
 		<input type="hidden" id="showForm" value="{$showForm}" />
 		<div id="loginContainer">			
@@ -10,8 +31,8 @@
 				<p id="welcome">Welcome, {$newUserName}! Please re-enter your password to sign in for the first time!</p><br />
 			{/if}
 			<div id="optionsContainer">
-				Existing user?&nbsp;<p onclick="toggleDisplay('login');"  class="fakeAnchor" >Login</p>&nbsp;&nbsp;&nbsp;
-				New user?&nbsp;<p onclick="toggleDisplay('create');" class="fakeAnchor">Create an account</p>
+				<p onclick="toggleDisplay('login');"  class="fakeAnchor" >Login</p>&nbsp;&nbsp;&nbsp;
+				<p onclick="toggleDisplay('create');" class="fakeAnchor">Create an account</p>
 			</div>
 			<fieldset id="createUser">
 				<legend>Create User:&nbsp;</legend>
