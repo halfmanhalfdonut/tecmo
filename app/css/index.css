@@ -14,11 +14,10 @@ body{
 	height:25px;
 }
 #nav ul{
-
-	list-style:none;
 }
 #nav li{
 	float:left;
+	list-style:none;
 	margin-right:20px;
 }
 
