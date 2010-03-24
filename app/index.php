@@ -19,7 +19,7 @@
 		$errors[]=$user->resetPassword($_POST['username']);
 	}
 	//login existing user
-	if(isset($_POST['usernameLogin']) && isset($_POST['password'])){
+	if(!empty($_POST['usernameLogin']) && !empty($_POST['password'])){
 		if($user->checkLoginInfo($_POST['usernameLogin'],$_POST['password'])){
 			
 			//login user

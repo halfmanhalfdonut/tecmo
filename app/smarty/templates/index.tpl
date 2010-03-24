@@ -4,7 +4,8 @@
 		<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_DIR}/index.css" />
 		<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
 		<script type="text/javascript">
-			var toggleDisplay = function(show){
+			var toggleDisplay = function(show){ //show the appropriate form
+				$("#loginContainer").siblings().fadeTo(500,0.5);
 					if(show=="login")
 					{
 						$("#login").show();
@@ -15,25 +16,34 @@
 						$("#login").hide();
 						$("#createUser").show();
 					}
-						
 				}
 			$(document).ready(function(){
+				//hide forms
 				$("#createUser").hide();
 				$("#login").hide();
+				
+				//close form window
+				$("div[name^='close']").mousedown(function(){
+					$(this).parent().hide();
+					$("#loginContainer").siblings().fadeTo(500,1);
+				});
 
 			});
 		</script>
 	</head>
 	<body>
-		<input type="hidden" id="showForm" value="{$showForm}" />
+		
+		<div id="optionsContainer">
+			<p onclick="toggleDisplay('login');"  class="fakeAnchor" >Login</p>&nbsp;&nbsp;&nbsp;
+			<p onclick="toggleDisplay('create');" class="fakeAnchor">Create an account</p>
+		</div>
+		<div id="nav">
+			<ul><li>Home</li><li>League Info</li><li>Standings</li><li>Teams</li><li>Players</li></ul>
+		</div>
 		<div id="loginContainer">			
 			{if $newUserName}
 				<p id="welcome">Welcome, {$newUserName}! Please re-enter your password to sign in for the first time!</p><br />
 			{/if}
-			<div id="optionsContainer">
-				<p onclick="toggleDisplay('login');"  class="fakeAnchor" >Login</p>&nbsp;&nbsp;&nbsp;
-				<p onclick="toggleDisplay('create');" class="fakeAnchor">Create an account</p>
-			</div>
 			<fieldset id="createUser">
 				<legend>Create User:&nbsp;</legend>
 				<form id="createForm" name="createForm" method="POST" action="{$thisPage}" onsubmit="return validate(this);" >
@@ -45,6 +55,7 @@
 						<li><input id="password2" type="password" name="password2" />Confirm Password:</li>
 					</ul>					<input type="submit" value="Submit!" class="Submit" />
 				</form>
+				<div id="close" name="close"><a href="#">close</a></div>
 			</fieldset>
 			<fieldset id="login">
 				<legend>Login:&nbsp;</legend>
@@ -54,7 +65,9 @@
 						<li><input id="password" type="password" name="password" />Password:</li>
 					</ul>
 					<input type="submit" value="Submit!" class="submit" />					<input type="submit" value="Reset" name="reset" />
-				</form>				<br />
+				</form>	
+				<div id="close" name="close"><a href="#">close</a></div>
+				<br />
 			</fieldset>			
 			<div id="notices" >
 				{if $errors}Notice(s):<br />
