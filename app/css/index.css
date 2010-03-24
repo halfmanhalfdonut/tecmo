@@ -17,6 +17,7 @@ body{
 }
 #nav li{
 	float:left;
+	cursor:pointer;cursor:hand;
 	list-style:none;
 	margin-right:20px;
 }

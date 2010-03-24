@@ -4,6 +4,25 @@
 		<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_DIR}/index.css" />
 		<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
 		<script type="text/javascript">
+			var getData = function(whatData){
+				http=new XMLHttpRequest();
+				if (http==null)//Check if HTTP Request are supported
+				{
+					alert("You need to upgrade your browser to continue");
+					return;
+				}
+				http.onreadystatechange=stateChange;
+				url="requestHandler.php";
+				url+="?xdata="+whatData;
+				url+="&sid="+Math.random();
+				http.open("GET",url,false);
+				http.send(null);
+				function stateChange()
+				{
+					if(http.readyState==4)
+						document.getElementById("notices").innerHTML= http.responseText;
+				}
+			}
 			var toggleDisplay = function(show){ //show the appropriate form
 				$("#loginContainer").siblings().fadeTo(500,0.5);
 					if(show=="login")
@@ -38,7 +57,9 @@
 			<p onclick="toggleDisplay('create');" class="fakeAnchor">Create an account</p>
 		</div>
 		<div id="nav">
-			<ul><li>Home</li><li>League Info</li><li>Standings</li><li>Teams</li><li>Players</li></ul>
+			<ul><li onclick="getData('home')">Home</li><li onclick="getData('league')">League Info</li>
+			<li onclick="getData('standings')">Standings</li><li onclick="getData('teams')">Teams</li>
+			<li onclick="getData('players')">Players</li></ul>
 		</div>
 		<div id="loginContainer">			
 			{if $newUserName}
@@ -69,13 +90,13 @@
 				<div id="close" name="close"><a href="#">close</a></div>
 				<br />
 			</fieldset>			
-			<div id="notices" >
-				{if $errors}Notice(s):<br />
-					{foreach from=$errors item=thisError}
-						{$thisError}<br />
-					{/foreach}
-				{/if}
-			</div>
+		</div>
+		<div id="notices" >
+			{if $errors}Notice(s):<br />
+				{foreach from=$errors item=thisError}
+					{$thisError}<br />
+				{/foreach}
+			{/if}
 		</div>
 	</body>
 </html>
