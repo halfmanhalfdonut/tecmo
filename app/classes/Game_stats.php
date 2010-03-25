@@ -54,7 +54,7 @@
 		
 		public function getGames(){
 			//$this->db->SetFetchMode( ADODB_FETCH_ASSOC );
-			return $this->db->GetAssoc('SELECT * FROM '. self::GAME_STATS_TABLE .'');
+			return $this->db->GetAll('SELECT * FROM '. self::GAME_STATS_TABLE );
 		}
 		
 		public function getGameStats($id){

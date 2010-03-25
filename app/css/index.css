@@ -43,6 +43,9 @@ legend {
 	color: black;
 	font-weight: bold;
 }
+thead{
+	background-color:#ffffff;
+}
 
 .fakeAnchor {
 	display: inline;
