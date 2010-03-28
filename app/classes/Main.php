@@ -27,10 +27,12 @@
 	if ($isRunningLocal) {
 		define('CSS_DIR', 'css');
 		define('JS_DIR', 'js');
+		define('IMG_DIR', 'images');
 	} 
 	else {
 		define('CSS_DIR', 'css');
 		define('JS_DIR', 'js');
+		define('IMG_DIR', 'images');
 	}
 
 	//adodb

@@ -111,6 +111,6 @@
 	$smarty->assign('showForm',$showForm);
 	
 	//set page title, display header and index
-	$smarty->assign('pageTitle','TECMO Super Bowl');
+	$smarty->assign('pageTitle','Wambo Tecmo League');
 	$smarty->display('index.tpl');
 ?>

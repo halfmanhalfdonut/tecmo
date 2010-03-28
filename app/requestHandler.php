@@ -11,7 +11,7 @@ switch ($xdata)
 		echo "HOME PAGE STUFF";
 		break;
 	case "league":
-		echo "NES SUPER TECMO BOWL LEAGUE of LEAGUES";
+		echo "NES TECMO SUPER BOWL LEAGUE of LEAGUES";
 		break;
 	case "standings":
 		$dbData=$gameStats->getGames();
