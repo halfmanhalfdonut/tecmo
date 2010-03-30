@@ -52,7 +52,7 @@
 			return $tableNames;
 		}
 		
-		public function getGames(){
+		public function getStandings(){
 			//$this->db->SetFetchMode( ADODB_FETCH_ASSOC );
 			return $this->db->GetAll('SELECT * FROM '. self::GAME_STATS_TABLE );
 		}

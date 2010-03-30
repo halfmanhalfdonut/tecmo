@@ -1,2 +1,7 @@
 <?php
-	echo "sign in!!!!!!!!!!!!";
+require_once('classes/Main.php');
+
+$smarty->display('signIn.tpl');
+
+?>
+

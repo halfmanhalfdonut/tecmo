@@ -13,7 +13,7 @@
 	//array used to store login errors
 	$errors = array();
 	
-	//Password Reset - i dont know if this should be done here but if we going to use it here we should ask for more than just their user name.
+	//Password Reset - i dont know if this should be done here but if we going to use it here we should ask for more than just their user name. 
 	//maybe user name and email but i think there should be an option for this once the user logs in
 	if(isset($_POST['reset'])&& ($_POST['username']!=null)){
 		$errors[]=$user->resetPassword($_POST['username']);
@@ -26,7 +26,7 @@
 			if ($user->login($_POST['usernameLogin'],$_POST['password'])){
 				
 				//login successful - test message displayd.
-				header('location: main.php');
+				//header('location: main.php'); No one likes going to main.php so dont send them there
 			}
 			else{
 				$errors[]= 'LOGIN FAILED!'; //this would be strange, but hey...

@@ -46,45 +46,45 @@ wambo.validate = function(formObj){
 	//validate whichever form it is and add errors to error var if they exist
 	if(form == 'loginForm'){
 		//login form
-		if($('usernameLogin').value.blank()){
+		if(form.usernameLogin===""){
 			errors += 'Error - Username field is empty\n';
 		}
-		if($('password').value.blank()){
+		if(form.password===""){
 			errors += 'Error - Password field is empty\n';
 		}
 	}
 	else{
 		//create user form
-		if(wambo.utils.trim($('#email1').value()) === ""){
+		if(wambo.utils.trim(form.email1.value) === ""){
 			errors += 'Error - Email field is empty\n';
 		}
-		if($('email2').value.blank()){
+		if(form.email2.value===""){
 			errors += 'Error - Confirm Email field is empty\n';
 		}
 		if(errors.empty()){
 			//both email fields have values, now check that they are the same
-			if(!($('email1').value == $('email2').value)){
+			if(!(form.email1.value == form.email2.value)){
 				errors += 'Error - Emails do not match\n';
 			}
 			else{
 				//both email fields are the same, now check that they are valid emails
-				if(!isValidEmail($('email1').value)){
+				if(!isValidEmail(form.email1.value)){
 					errors += 'Error - Email is not a valid address\n';
 				}
 			}
 		}
-		if($('usernameCreate').value.blank()){
+		if(form.usernameCreate.value===""){
 			errors += 'Error - Usename field is empty\n';
 		}
-		if($('password1').value.blank()){
+		if(form.password1.value===""){
 			errors += 'Error - Password field is empty\n';
 		}
 		else{
-			if(!($('password1').value === $('password2').value)){
+			if(!(form.password1.value === form.password2.value)){
 				errors += 'Error - Passwords do not match\n';
 			}
 		}
-		if($('password2').value.blank()){
+		if(form.password2.value===""){
 			errors += 'Error - Confirm Password field is empty\n';
 		}
 	}

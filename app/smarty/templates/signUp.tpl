@@ -2,7 +2,7 @@
 	<a href="#" id="close"><span class="seo">close</span></a>
 	<fieldset id="createUser">
 		<legend>Sign up:&nbsp;</legend>
-		<form id="createForm" name="createForm" method="POST" action="/sign-up/" onsubmit="return wambo.validate(this);" >
+		<form id="createForm" name="createForm" method="POST" action="wamboNation" onsubmit="return wambo.validate(this);" >
 			<ul class="labelsInputs">
 				<li><input id="email1" name="email1" />Email:</li>
 				<li><input id="email2" name="email2" />Confirm Email:</li>
