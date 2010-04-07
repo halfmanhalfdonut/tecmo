@@ -61,7 +61,7 @@ wambo.validate = function(formObj){
 		if(form.email2.value===""){
 			errors += 'Error - Confirm Email field is empty\n';
 		}
-		if(errors.empty()){
+		if(errors===""){
 			//both email fields have values, now check that they are the same
 			if(!(form.email1.value == form.email2.value)){
 				errors += 'Error - Emails do not match\n';
@@ -90,7 +90,7 @@ wambo.validate = function(formObj){
 	}
 	
 	//if errors var is empty then there are no errors
-	if(errors.empty()){
+	if(errors===""){
 		//submit
 		return true;
 	}
@@ -107,6 +107,23 @@ wambo.validate = function(formObj){
 isValidEmail = function(email) {
 	return /^[^@]+@[^.]+(\.[^.]+)+$/.test(email);
 }
+
+//Add juice to the retro engines
+wambo.userMenuToggle = function(){
+	$('#userMenuIn').hide();
+	var inOut=false;
+	inOut = wambo.getData('userMenu');
+	$('#notices').html("user logged in: "+ inOut);
+	if(inOut=='true'){
+		$('#userMenuIn').show();
+		$('#userMenu').hide();
+	}
+	else{
+		$('#userMenuIn').hide();
+		$('#userMenu').show();
+	}
+}
+
 
 //show the form that the user wants to see
 toggleDisplay = function(toggleMe){

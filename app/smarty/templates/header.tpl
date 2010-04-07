@@ -1,5 +1,5 @@
 <div id="headerContainer" class="clearfix">
-	{* TODO: When the user is signed in, this will show "Account" and "Sign Out" instead *}
+	<!-- default user controls, hides when user signs in-->
 	<ul id="userMenu" class="horizontal-nav clearfix">
 		<li>
 			<a href="/tecmo/app/signin.php" id="signin" class="a1">Sign In</a>
@@ -8,6 +8,16 @@
 			<a href="/tecmo/app/signup.php" id="signup" class="a1">Sign Up</a>
 		</li>
 	</ul>
+	<ul id="userMenuIn" class="horizontal-nav clearfix">
+		<li>
+			<a href="/tecmo/app/signin.php" id="signin" class="a1">Account</a>
+		</li>
+		<li>
+			<a href="/tecmo/app/signup.php" id="signup" class="a1">Logout</a>
+		</li>
+	</ul>
+
+	<!--main nav , always shows-->
 	<ul id="menu" class="horizontal-nav clearfix">
 		<li>
 			<a href="/tecmo/app/" id="home"><img src="{$smarty.const.IMG_DIR}/logo.png" alt="Home" /></a>

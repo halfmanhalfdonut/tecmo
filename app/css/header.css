@@ -12,12 +12,14 @@
 	margin-right:20px;
 }
 #menu li a,
+#userMenuIn li a,
 #userMenu li a {
 	padding: 3px 5px;
 	background: #004c98;
 }
 
 #menu li a:hover,
+#userMenuIn li a:hover,
 #userMenu li a:hover {
 	text-decoration: none;
 	background: #003c77;
@@ -28,16 +30,16 @@
 	top: -30px;
 }
 
-#menu li #home:hover {
+#menu li, #home:hover {
 	background: none;
 }
 
-#userMenu {
+#userMenu, #userMenuIn{
 	position: absolute;
 	right: 10px;
 	top: 10px;
 }
 
-#userMenu #sign-in {
+#userMenu, #userMenuIn,#sign-in {
 	margin-right: 30px;
 }
