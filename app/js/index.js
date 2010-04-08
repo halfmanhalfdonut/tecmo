@@ -108,36 +108,10 @@ isValidEmail = function(email) {
 	return /^[^@]+@[^.]+(\.[^.]+)+$/.test(email);
 }
 
-//Add juice to the retro engines
-wambo.userMenuToggle = function(){
-	$('#userMenuIn').hide();
-	var inOut=false;
-	inOut = wambo.getData('userMenu');
-	$('#notices').html("user logged in: "+ inOut);
-	if(inOut=='true'){
-		$('#userMenuIn').show();
-		$('#userMenu').hide();
-	}
-	else{
-		$('#userMenuIn').hide();
-		$('#userMenu').show();
-	}
-}
 
 
-//show the form that the user wants to see
-toggleDisplay = function(toggleMe){
-	if(toggleMe == 'login'){
-		$('createUser').hide();
-		$('login').show();
-		$('notices').hide();
-	}
-	else{
-		$('login').hide();
-		$('createUser').show();
-		$('notices').hide();
-	}
-}
+
+
 
 /*
 //hide create user form when page loads

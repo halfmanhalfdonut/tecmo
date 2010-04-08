@@ -1,15 +1,18 @@
 <?php
 require_once('classes/Main.php');
 require_once('classes/Game_Stats.php');
-require_once('Users.php');
-$users= new Users($db);
+require_once('classes/Users.php');
+$user= new Users($db);
 $gameStats=new Game_Stats($db);
 
 //get value from index js
 $xdata=$_GET["xdata"];
 
 if($xdata=="userMenu"){
-	echo $user->isLoggedIn();;
+	if($user->isLoggedIn())
+		echo true;
+	else
+		echo false;
 }
 else{
 	switch ($xdata)
