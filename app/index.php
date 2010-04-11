@@ -35,58 +35,8 @@
 		else{
 				$errors[]= 'LOGIN FAILED! - Supplied Username and Password did not match any registered user!';
 		}
-	}//create new user
-	elseif( isset($_POST['email1']) ){
-		$showForm ='create';
-
-		//make sure all fields have data
-		if(empty($_POST['email1'])) $errors[]= 'Email field is empty';
-		if(empty($_POST['email2'])) $errors[]= 'Confirm Email field is empty';
-		if(empty($_POST['usernameCreate'])) $errors[]= 'User Name field is empty';
-		if(empty($_POST['password1'])) $errors[]= 'Password field is empty';
-		if(empty($_POST['password2'])) $errors[]= 'Confirm Password field is empty';
-		
-		//all fields set, time to check
-		if(empty($errors)){
-		
-			//check that email and passwords match
-			if($_POST['email1'] != $_POST['email2']) $errors[]= 'Email fields do not match';
-			if($_POST['password1'] != $_POST['password2']) $errors[]= 'Password fields do not match';
-			
-			//fields match - check that email is valid and available
-			if(empty($errors)){
-				if(!$user->emailValid($_POST['email1'])){
-					//invalid email
-					$errors[]= $_POST['email1'].' is NOT a valid email address';
-					
-				}//valid email, check if it is being used
-				elseif(!$user->emailAvailable($_POST['email1'])){
-					//email in use
-					$errors[]= 'Email address already in use';
-					
-				}
-				elseif(!$user->userNameAvailable($_POST['usernameCreate'])){
-					//user name in use
-					$errors[]= 'User Name already in use';
-					
-				}//email is valid and not in use, user name is not in use, password is not empty. MAKE THAT USER!
-				else{
-				
-					//make user
-					$user->createUser($_POST['email1'],$_POST['password1'],$_POST['usernameCreate']);
-					
-					//send success messages to template
-					$smarty->assign('newUserName',$_POST['usernameCreate']);
-					$smarty->assign('newUserEmail',$_POST['email1']);
-					
-					//show login form
-					$showForm = 'login';
-					
-				}
-			}
-		}
 	}
-		
+			
 	//redirect messages
 	if(isset($_GET['message'])){
 		

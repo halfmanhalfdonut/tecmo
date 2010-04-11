@@ -9,10 +9,8 @@ $gameStats=new Game_Stats($db);
 $xdata=$_GET["xdata"];
 
 if($xdata=="userMenu"){
-	if($user->isLoggedIn())
-		echo true;
-	else
-		echo false;
+	echo "shit storm";
+	echo $user->isLoggedIn();
 }
 else{
 	switch ($xdata)

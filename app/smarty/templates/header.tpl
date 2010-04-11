@@ -1,5 +1,37 @@
 <div id="headerContainer" class="clearfix">
 	<!-- default user controls, hides when user signs in-->
+	{if $smarty.session.loggedIn}
+	<ul id="userMenuIn" class="horizontal-nav clearfix">
+		<li>
+			Welcome, <span class="displayUsername">{$smarty.session.userName}</span>.
+		</li>
+		<li>
+			<a href="/tecmo/app/account.php" id="signin" class="a1">Account</a>
+		</li>
+		<li>
+			<a href="/tecmo/app/signout.php" id="signup" class="a1">Logout</a>
+		</li>
+	</ul>
+	<ul id="userMenu" class="horizontal-nav clearfix" style="display: none">
+		<li>
+			<a href="/tecmo/app/signin.php" id="signin" class="a1">Sign In</a>
+		</li>
+		<li>
+			<a href="/tecmo/app/signup.php" id="signup" class="a1">Sign Up</a>
+		</li>
+	</ul>
+	{else}
+	<ul id="userMenuIn" class="horizontal-nav clearfix" style="display: none">
+		<li>
+			Welcome, <span class="displayUsername">{$smarty.session.userName}</span>.
+		</li>
+		<li>
+			<a href="/tecmo/app/account.php" id="signin" class="a1">Account</a>
+		</li>
+		<li>
+			<a href="/tecmo/app/signout.php" id="signup" class="a1">Logout</a>
+		</li>
+	</ul>
 	<ul id="userMenu" class="horizontal-nav clearfix">
 		<li>
 			<a href="/tecmo/app/signin.php" id="signin" class="a1">Sign In</a>
@@ -8,14 +40,7 @@
 			<a href="/tecmo/app/signup.php" id="signup" class="a1">Sign Up</a>
 		</li>
 	</ul>
-	<ul id="userMenuIn" class="horizontal-nav clearfix">
-		<li>
-			<a href="/tecmo/app/signin.php" id="signin" class="a1">Account</a>
-		</li>
-		<li>
-			<a href="/tecmo/app/signup.php" id="signup" class="a1">Logout</a>
-		</li>
-	</ul>
+	{/if}
 
 	<!--main nav , always shows-->
 	<ul id="menu" class="horizontal-nav clearfix">

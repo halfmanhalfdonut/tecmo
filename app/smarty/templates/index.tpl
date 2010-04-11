@@ -1,4 +1,3 @@
-{assign var='thisPage' value='index.php'}
 {include file="head.tpl"}
 {include file="header.tpl"}
 
@@ -9,5 +8,6 @@
 		{/foreach}
 	{/if}
 </div>
-		
+
+{include file="$smartyBody"}
 {include file="footer.tpl"}

@@ -12,6 +12,11 @@ a:hover {
 	text-decoration: underline;
 }
 
+ul li {
+	list-style: none;
+	
+}
+
 .a1 {
 	font-size: 138%;
 	font-weight: bold;
@@ -48,6 +53,11 @@ a:hover {
 	background: #000000;
 	opacity: .5;
 	filter: alpha(opacity = 50);
+}
+
+.ui-dialog {
+	background: #004c98;
+	border: 5px solid #FFF;
 }
 
 .horizontal-nav {
