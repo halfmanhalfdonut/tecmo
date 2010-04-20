@@ -25,8 +25,8 @@
 	};
 	
 	$(document).ready(function() {
-		wambo.utils.log("User logged in? " + user.loggedIn);
-		wambo.utils.log("User name: " + user.name);
+		wambo.utils.log("User logged in: " + (user.loggedIn || false));
+		wambo.utils.log("User name: " + (user.name || "none"));
 		$('#menu a').unbind('click').bind('click', function(e) {
 			e.preventDefault();
 			wambo.utils.log("Menu item: " + this.href);
@@ -36,7 +36,7 @@
 		
 		$('#userMenu a').unbind('click').bind('click', function(e) {
 			e.preventDefault();
-			$('body').prepend('<div id="modalDialog"></div>');
+			if ($('#modalDialog').length == 0) $('body').prepend('<div id="modalDialog"></div>');
 			$('#modalDialog').load(this.href + '?fetch=true').dialog({modal: true, width: 400, height: 400});
 			return false;
 		});

@@ -6,6 +6,7 @@
 	
 	$create = isset($_POST['email1']) ? true : false;
 	$ajax = isset($_GET['fetch']) ? true : false;
+	$ajaxPost = isset($_POST['fromAjax']) ? $_POST['fromAjax'] : false;
 	$errors = array();
 	
 	if ($create) {
@@ -44,6 +45,12 @@
 					//make user
 					$createStatus = $user->createUser($_POST['email1'],$_POST['password1'],$_POST['usernameCreate']);
 					if ($createStatus == true) {
+						if ($user->login($_POST['usernameCreate'],$_POST['password1'])){
+							// nothing?
+							if ($ajaxPost) echo "({ loggedIn : true, name : \"".$_SESSION['userName']."\" })";
+						} else{
+							$errors[]= 'LOGIN FAILED!'; //this would be strange, but hey...
+						}
 						//send success messages to template
 						$smarty->assign('newUserName',$_POST['usernameCreate']);
 						$smarty->assign('newUserEmail',$_POST['email1']);
@@ -55,13 +62,21 @@
 		}
 
 		//send error messages to template
-		if(isset($errors)){
+		if(!empty($errors)){
+			if ($ajaxPost) {
+				$count = 1;
+				echo "({ errors: '";
+				foreach($errors as $error) {
+					if ($count == 1) echo "$error";
+					else echo "<br /> $error";
+					$count++;
+				}
+				echo "'})";
+			}
 			$smarty->assign('errors',$errors);
 		}
 		
-		if (isset($_POST['fromAjax'])) {
-			exit;
-		}
+		if ($ajaxPost) exit;
 	}
 	
 	if ($ajax) {
